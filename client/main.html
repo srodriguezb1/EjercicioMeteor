@@ -1,0 +1,24 @@
+<head>
+  <title>My first app in meteor</title>
+</head>
+
+<body>
+  <h1>Using templates</h1>
+  {{> profile}}
+  <h2>Ingreso de datos</h2>
+  {{> crearEvento}}
+</body>
+
+<template name="profile">
+  {{#each profilesCollection}}
+  {{name}} {{age}}
+  {{/each}}
+</template>
+
+<template name="crearEvento">
+  <form>
+    <input type="text" name="nombre">
+    <input type="number" name="edad">
+    <input type="submit" value="agregar">
+  </form>
+</template>
