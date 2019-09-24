@@ -1,23 +1,10 @@
 import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
-
+import Profiles from "../collections";
 import './main.html';
 
 
 
-Template.profile.created = ()=>{
-  console.log("Created the profile template");
-}
-
-Template.profile.rendered = ()=>{
-  console.log("Rendered the profile template");
-}
-
 Template.profile.helpers({
-
-  exampleHelper: () => {
-    return "string returned by exampleHelper";
-},
 
 profileList: ()=>{
   return [
@@ -47,15 +34,9 @@ profileList: ()=>{
   }
 });
 
-Template.profile.events({
-    'click button': (e, i) => {
-        console.log("Button clicked");
-        Session.set("randomNumber", Math.random(0, 99));
-    }
-});
 
 
-Template.crearEvento.helpers({
+Template.crearEvento.events({
   'submit form': (event) => {
     event.preventDefault();
     const target = event.target;
@@ -63,7 +44,7 @@ Template.crearEvento.helpers({
     const edad = target.edad.value;
     console.log("Siiiii");
     Profiles.insert({name:nombre, age:edad});
-    target.name.value = "";
+    target.nombre.value = "";
     target.edad.value ="";
   }
 });
